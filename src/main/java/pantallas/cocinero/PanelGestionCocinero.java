@@ -1,15 +1,17 @@
+package pantallas.cocinero;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
-public class PanelGestionCamarero extends JFrame {
+public class PanelGestionCocinero extends JFrame {
 
     private static final ImageIcon fondoPantalla = new ImageIcon(getRutaImagenFondo()) ;
 
 
 
-    public PanelGestionCamarero(){
-        super("TABERNA LA ESQUINITA - Panel Gestión Camarero");
+    public PanelGestionCocinero(){
+        super("TABERNA LA ESQUINITA - Panel Gestión Cocinero");
 
         //PANEL DE FONDO
         JPanel panelPrincipal = crearPanelImagenFondo();
@@ -32,7 +34,7 @@ public class PanelGestionCamarero extends JFrame {
         setContentPane(panelPrincipal);//Panel de Fondo
         setVisible(true); //VISIBILIDAD
         setBackground(Color.DARK_GRAY); //COLOR
-       setLocationRelativeTo(null); //POSICION CENTRADA
+        setLocationRelativeTo(null); //POSICION CENTRADA
         setSize(new Dimension(1250,800)); //TAMAÑO DE VENTANA
 
 
@@ -53,7 +55,7 @@ public class PanelGestionCamarero extends JFrame {
 
     private static String getRutaImagenFondo(){
         String ruta = new File("").getAbsolutePath();
-        return ruta + "\\imagenes\\panel_camarero_2.jpg";
+        return ruta + "\\imagenes\\panel_cocinero.jpg";
 
 
     }

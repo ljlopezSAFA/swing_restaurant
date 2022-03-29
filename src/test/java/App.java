@@ -1,11 +1,8 @@
-
+import pantallas.VentanaPrincipal;
 
 public class App {
 
     public static void main(String[] args) {
-
-        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
-        //new PanelGestionCamarero();
-
+        new VentanaPrincipal();
     }
 }
