@@ -18,24 +18,20 @@ public class PanelGestionCocinero extends JFrame {
 
 
         //BOTONES
-//        JPanel panelBotones = new JPanel(new BorderLayout());
-//        panelBotones.setBorder(new EmptyBorder(100,100,100,100));
-//        panelBotones.setOpaque(false);
-//        botonAccederCamarero = crearBotonCamarero();
-//        botonAccederCocinero = crearBotonCocinero();
-//        panelBotones.add(botonAccederCocinero,BorderLayout.EAST);
-//        panelBotones.add(botonAccederCamarero,BorderLayout.WEST);
-//        panelPrincipal.add(panelBotones,BorderLayout.CENTER);
+
 
 
 
 
         //ASPECTO
         setContentPane(panelPrincipal);//Panel de Fondo
-        setVisible(true); //VISIBILIDAD
         setBackground(Color.DARK_GRAY); //COLOR
         setLocationRelativeTo(null); //POSICION CENTRADA
-        setSize(new Dimension(1250,800)); //TAMAÑO DE VENTANA
+        pack();
+        setSize(1250,800); //TAMAÑO DE VENTANA
+        setResizable(false);
+        setLocationRelativeTo(null); //POSICION CENTRADA
+        setVisible(true); //VISIBILIDAD
 
 
     }

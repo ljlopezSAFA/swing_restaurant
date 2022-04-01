@@ -72,13 +72,16 @@ public class FormularioComandas extends JFrame {
 
 
 
+
         //ASPECTO
         setContentPane(panelPrincipal);//Panel de Fondo
-        setVisible(true); //VISIBILIDAD
-        setDefaultCloseOperation(EXIT_ON_CLOSE); //EXIT ON CLOSE
         setBackground(Color.DARK_GRAY); //COLOR
-        //setLocationRelativeTo(null); //POSICION CENTRADA
-        setSize(new Dimension(900,600)); //TAMAÑO DE VENTANA
+        setLocationRelativeTo(null); //POSICION CENTRADA
+        pack();
+        setSize(1250,800); //TAMAÑO DE VENTANA
+        setResizable(false);
+        setLocationRelativeTo(null); //POSICION CENTRADA
+        setVisible(true); //VISIBILIDAD
 
 
     }

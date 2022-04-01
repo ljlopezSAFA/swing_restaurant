@@ -35,10 +35,13 @@ public class PanelGestionCamarero extends JFrame {
 
         //ASPECTO
         setContentPane(panelPrincipal);//Panel de Fondo
-        setVisible(true); //VISIBILIDAD
         setBackground(Color.DARK_GRAY); //COLOR
-        //setLocationRelativeTo(null); //POSICION CENTRADA
-        setSize(new Dimension(1250,800)); //TAMAÑO DE VENTANA
+        setLocationRelativeTo(null); //POSICION CENTRADA
+        pack();
+        setSize(1250,800); //TAMAÑO DE VENTANA
+        setResizable(false);
+        setLocationRelativeTo(null); //POSICION CENTRADA
+        setVisible(true); //VISIBILIDAD
 
 
     }
@@ -69,6 +72,7 @@ public class PanelGestionCamarero extends JFrame {
         Image imagenLimitadaTamanyo = icono.getImage().getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH);
         icono.setImage(imagenLimitadaTamanyo);
         boton.setIcon(icono);
+        boton.setFocusPainted(false);
         //boton.addActionListener();
         return boton;
     }
@@ -80,10 +84,10 @@ public class PanelGestionCamarero extends JFrame {
         Image imagenLimitadaTamanyo = icono.getImage().getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH);
         icono.setImage(imagenLimitadaTamanyo);
         boton.setIcon(icono);
+        boton.setFocusPainted(false);
         //boton.addActionListener();
         return boton;
     }
-
 
 
 }

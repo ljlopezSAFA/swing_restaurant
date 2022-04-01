@@ -26,20 +26,34 @@ public class VentanaPrincipal extends JFrame {
         //PANEL DE FONDO
         JPanel panelPrincipal = crearPanelImagenFondo();
 
-
         //BOTONES
+        crearPanelBotones(panelPrincipal);
+
+        //ASPECTO
+        setContentPane(panelPrincipal);//Panel de Fondo
+        setDefaultCloseOperation(EXIT_ON_CLOSE); //EXIT ON CLOSE
+        setBackground(Color.DARK_GRAY); //COLOR
+        setSize(new Dimension(700,400)); //TAMAÑO DE VENTANA
+        setResizable(false);
+        pack();
+        setLocationRelativeTo(null); //POSICION CENTRADA
+        setVisible(true); //VISIBILIDAD
+
+    }
+
+    private void crearPanelBotones(JPanel panelPrincipal) {
         JPanel panelBotones = new JPanel(new BorderLayout());
         panelBotones.setBorder(new EmptyBorder(100,100,100,100));
         panelBotones.setOpaque(false);
 
-        JPanel subPanel1 = new JPanel(new BorderLayout());
+        JPanel subPanel1 = new JPanel(new GridLayout());
         subPanel1.setOpaque(false);
         botonAccederCamarero = crearBotonCamarero();
         botonAccederCocinero = crearBotonCocinero();
-        subPanel1.add(botonAccederCocinero,BorderLayout.EAST);
-        subPanel1.add(botonAccederCamarero,BorderLayout.WEST);
+        subPanel1.add(botonAccederCocinero);
+        subPanel1.add(botonAccederCamarero);
 
-        JPanel subPanel2 = new JPanel(new BorderLayout());
+        JPanel subPanel2 = new JPanel(new GridLayout());
         subPanel2.setOpaque(false);
         botonAccederAdministrador = crearBotonAdministrador() ;
         botonAccederCliente = crearBotonCliente();
@@ -50,19 +64,6 @@ public class VentanaPrincipal extends JFrame {
         panelBotones.add(subPanel1,BorderLayout.NORTH);
         panelBotones.add(subPanel2,BorderLayout.SOUTH);
         panelPrincipal.add(panelBotones,BorderLayout.CENTER);
-
-
-
-
-        //ASPECTO
-        setContentPane(panelPrincipal);//Panel de Fondo
-        setVisible(true); //VISIBILIDAD
-        setDefaultCloseOperation(EXIT_ON_CLOSE); //EXIT ON CLOSE
-        setBackground(Color.DARK_GRAY); //COLOR
-        //setLocationRelativeTo(null); //POSICION CENTRADA
-        setSize(new Dimension(700,400)); //TAMAÑO DE VENTANA
-
-
     }
 
 
@@ -89,10 +90,11 @@ public class VentanaPrincipal extends JFrame {
         JButton boton = new JButton("Camarero");
         String ruta = new File("").getAbsolutePath() + "\\imagenes\\camarero.png" ;
         ImageIcon imagen = new ImageIcon(ruta);
-        Image imagenLimitadaTamanyo = imagen.getImage().getScaledInstance(80, 80,  java.awt.Image.SCALE_SMOOTH);
+        Image imagenLimitadaTamanyo = imagen.getImage().getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH);
         imagen.setImage(imagenLimitadaTamanyo);
         boton.setIcon(imagen);
         boton.addActionListener(new AccionAbrirMenuCamarero());
+        boton.setFocusPainted(false);
         return boton;
     }
 
@@ -101,10 +103,11 @@ public class VentanaPrincipal extends JFrame {
         JButton boton = new JButton("Cocinero");
         String ruta = new File("").getAbsolutePath() + "\\imagenes\\cocinero.png" ;
         ImageIcon imagen = new ImageIcon(ruta);
-        Image imagenLimitadaTamanyo = imagen.getImage().getScaledInstance(80, 80,  java.awt.Image.SCALE_SMOOTH);
+        Image imagenLimitadaTamanyo = imagen.getImage().getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH);
         imagen.setImage(imagenLimitadaTamanyo);
         boton.setIcon(imagen);
         boton.addActionListener(new AccionAbrirMenuCocinero());
+        boton.setFocusPainted(false);
         return boton;
     }
 
@@ -113,9 +116,10 @@ public class VentanaPrincipal extends JFrame {
         String ruta = new File("").getAbsolutePath() + "\\imagenes\\cliente.png";
         ImageIcon imageIcon = new ImageIcon(ruta);
         ImageIcon imagen = new ImageIcon(ruta);
-        Image imagenLimitadaTamanyo = imagen.getImage().getScaledInstance(80, 80,  java.awt.Image.SCALE_SMOOTH);
+        Image imagenLimitadaTamanyo = imagen.getImage().getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH);
         imagen.setImage(imagenLimitadaTamanyo);
         boton.setIcon(imagen);
+        boton.setFocusPainted(false);
         return boton;
     }
 
@@ -127,6 +131,7 @@ public class VentanaPrincipal extends JFrame {
         imagen.setImage(imagenLimitadaTamanyo);
         boton.setIcon(imagen);
         boton.addActionListener(new AccionAbrirMenuAdministrador());
+        boton.setFocusPainted(false);
         return boton;
     }
 
