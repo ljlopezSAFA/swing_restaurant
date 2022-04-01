@@ -7,6 +7,7 @@ public class Empleado {
     private String codigoEmpleado;
     private String nombre;
     private String apellidos;
+    private TipoEmpleado tipoEmpleado;
 
     public Empleado() {
     }
@@ -16,6 +17,14 @@ public class Empleado {
         this.codigoEmpleado = codigoEmpleado;
         this.nombre = nombre;
         this.apellidos = apellidos;
+    }
+
+    public Empleado(int id, String codigoEmpleado, String nombre, String apellidos, TipoEmpleado tipoEmpleado) {
+        this.id = id;
+        this.codigoEmpleado = codigoEmpleado;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.tipoEmpleado = tipoEmpleado;
     }
 
 
@@ -51,6 +60,13 @@ public class Empleado {
         this.apellidos = apellidos;
     }
 
+    public TipoEmpleado getTipoEmpleado() {
+        return tipoEmpleado;
+    }
+
+    public void setTipoEmpleado(TipoEmpleado tipoEmpleado) {
+        this.tipoEmpleado = tipoEmpleado;
+    }
 
     @Override
     public boolean equals(Object o) {

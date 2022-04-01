@@ -1,6 +1,7 @@
 package bbdd;
 
 import modelos.Empleado;
+import modelos.TipoEmpleado;
 
 import java.sql.*;
 
@@ -22,6 +23,11 @@ public class UtilidadesBD {
         return conexion;
     }
 
+
+
+
+
+
     public static Empleado obtenerPorId(Integer id){
 
         Connection con = conectarConBD();
@@ -35,7 +41,7 @@ public class UtilidadesBD {
             //Recorremos los datos
             while (rs.next()){
                empleado = new Empleado(rs.getInt("id"), rs.getString("codigo_empleado"),
-                                        rs.getString("nombre"), rs.getString("apellidos"));
+                                        rs.getString("nombre"), rs.getString("apellidos"), TipoEmpleado.values()[rs.getInt("tipo_empleado")]);
             }
 
         } catch (SQLException sqle) {
@@ -79,13 +85,14 @@ public class UtilidadesBD {
         Connection con = conectarConBD();
 
         try {
-            PreparedStatement insert = con.prepareStatement("insert into empleado (id, codigo_empleado, nombre, apellidos)" +
-                    "values(?,?,?,?)");
+            PreparedStatement insert = con.prepareStatement("insert into empleado (id, codigo_empleado, nombre, apellidos, tipo_empleado)" +
+                    "values(?,?,?,?,?)");
 
             insert.setInt(1, empleado.getId());
             insert.setString(2,empleado.getCodigoEmpleado());
             insert.setString(3,empleado.getNombre());
             insert.setString(4, empleado.getApellidos());
+            insert.setInt(5, empleado.getTipoEmpleado().ordinal());
 
             //Ejecución del insert
             insert.executeUpdate();
@@ -106,13 +113,14 @@ public class UtilidadesBD {
 
         try {
             PreparedStatement update = con.prepareStatement("update empleado " +
-                    "set codigo_empleado = ? , nombre = ? , apellidos = ? " +
+                    "set codigo_empleado = ? , nombre = ? , apellidos = ? , tipo_empledado = ?" +
                     "where id = ? ");
 
             update.setString(1,empleado.getCodigoEmpleado());
             update.setString(2,empleado.getNombre());
             update.setString(3, empleado.getApellidos());
-            update.setInt(4, empleado.getId());
+            update.setInt(4, empleado.getTipoEmpleado().ordinal());
+            update.setInt(5, empleado.getId());
 
 
             //Ejecución del update
