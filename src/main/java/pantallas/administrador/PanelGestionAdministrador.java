@@ -95,7 +95,7 @@ public class PanelGestionAdministrador extends JFrame {
         icono.setImage(imagenLimitadaTamanyo);
         boton.setIcon(icono);
         boton.setFocusPainted(false);
-        //boton.addActionListener();
+        boton.addActionListener(new AccionAbrirFormularioProducto());
         return boton;
     }
 
@@ -103,6 +103,12 @@ public class PanelGestionAdministrador extends JFrame {
     class AccionAbrirFormularioEmpleados implements ActionListener {
         public void actionPerformed(ActionEvent ae) {
             new FormularioEmpleado();
+        }
+    }
+
+    class AccionAbrirFormularioProducto implements ActionListener {
+        public void actionPerformed(ActionEvent ae) {
+            new FormularioProducto();
         }
     }
 

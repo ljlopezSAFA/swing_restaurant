@@ -1,10 +1,8 @@
 package pantallas.administrador;
 
-import bbdd.EmpleadoBD;
-import bbdd.UtilidadesBD;
-import modelos.Empleado;
-import modelos.TipoCampoFormulario;
-import modelos.TipoEmpleado;
+
+import bbdd.ProductoBD;
+import modelos.*;
 import utilidades.UtilidadesFormulario;
 
 import javax.swing.*;
@@ -16,30 +14,37 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FormularioEmpleado extends JFrame {
+public class FormularioProducto extends JFrame {
 
     private static final ImageIcon fondoFormularios = new ImageIcon(getRutaImagenFondo());
 
 
-    public FormularioEmpleado() {
-        super("Empleados");
+    public FormularioProducto() {
+        super("Productos");
 
         JPanel panelPrincipal = crearPanelImagenFondo();
 
 
-        //Formulario
+        //Creaciónd de formulario
         JPanel panelExteriorFormulario = new JPanel(new BorderLayout());
         JPanel formulario = new JPanel(new GridLayout(0,1));
         formulario.setOpaque(false);
         formulario.setSize(new Dimension(300, 300));
-        formulario.setBackground(Color.LIGHT_GRAY);
+
+        //Campos Formulario
         UtilidadesFormulario.crearCampoFormulario(formulario,"id", TipoCampoFormulario.NUMERO, null);
-        UtilidadesFormulario.crearCampoFormulario(formulario,"codigo", TipoCampoFormulario.TEXTO,null);
-        UtilidadesFormulario.crearCampoFormulario(formulario,"nombre", TipoCampoFormulario.TEXTO,null);
-        UtilidadesFormulario.crearCampoFormulario(formulario,"apellidos", TipoCampoFormulario.TEXTO,null);
-        UtilidadesFormulario.crearCampoFormulario(formulario,"tipo empleado", TipoCampoFormulario.COMBO, List.of(TipoEmpleado.values()));
+        UtilidadesFormulario.crearCampoFormulario(formulario,"descripción", TipoCampoFormulario.TEXTO,null);
+        UtilidadesFormulario.crearCampoFormulario(formulario,"tipo producto", TipoCampoFormulario.COMBO, List.of(TipoProducto.values()));
+        UtilidadesFormulario.crearCampoFormulario(formulario,"precio", TipoCampoFormulario.TEXTO,null);
+
+        //Espaciado
         formulario.add(Box.createRigidArea(new Dimension(5, 0)));
+
+        //Botones Formulario
         UtilidadesFormulario.crearGridBotones(formulario,crearBotonesFormulario(formulario));
+
+
+        //Estilos y Posicionamiento de paneles de formulario
         panelExteriorFormulario.setBorder(new EmptyBorder(100,100,100,100));
         panelExteriorFormulario.setOpaque(false);
         panelExteriorFormulario.add(formulario,BorderLayout.CENTER);
@@ -87,13 +92,13 @@ public class FormularioEmpleado extends JFrame {
         JButton buscar = new JButton("Buscar");
         buscar.addActionListener(new ActionListener( ) {
             public void actionPerformed(ActionEvent e) {
-                Integer idEmpleado = Integer.valueOf(UtilidadesFormulario.obtenerTextoComponente(formulario,"id").toString());
-                Empleado empleado = EmpleadoBD.obtenerPorId(idEmpleado);
-                if(empleado!= null) {
-                    cambiarDatosFormulario(formulario, String.valueOf(empleado.getId()), empleado.getCodigoEmpleado(), empleado.getNombre(), empleado.getApellidos(),empleado.getTipoEmpleado());
+                Integer idProducto = Integer.valueOf(UtilidadesFormulario.obtenerTextoComponente(formulario,"id").toString());
+                Producto producto = ProductoBD.obtenerPorId(idProducto);
+                if(producto!= null) {
+                    cambiarDatosFormulario(formulario, String.valueOf(producto.getId()), producto.getDescripcion(),producto.getPrecio().toString(),producto.getTipoProducto());
                 }
                 else{
-                    cambiarDatosFormulario(formulario, "", "", "", "","");
+                    cambiarDatosFormulario(formulario, "", "", "", "");
                 }
             }
         });
@@ -103,14 +108,13 @@ public class FormularioEmpleado extends JFrame {
         JButton guardar = new JButton("Guardar");
         guardar.addActionListener(new ActionListener( ) {
             public void actionPerformed(ActionEvent e) {
-                Empleado empleado = new Empleado();
-                empleado.setId(Integer.parseInt(UtilidadesFormulario.obtenerTextoComponente(formulario,"id").toString()));
-                empleado.setNombre(UtilidadesFormulario.obtenerTextoComponente(formulario,"nombre").toString());
-                empleado.setApellidos(UtilidadesFormulario.obtenerTextoComponente(formulario,"apellidos").toString());
-                empleado.setCodigoEmpleado(UtilidadesFormulario.obtenerTextoComponente(formulario,"codigo").toString());
-                empleado.setTipoEmpleado((TipoEmpleado) UtilidadesFormulario.obtenerTextoComponente(formulario,"tipo empleado"));
-                EmpleadoBD.crearActualizarEmpleado(empleado);
-                cambiarDatosFormulario(formulario,"","","","",null);
+                Producto producto = new Producto();
+                producto.setId(Integer.parseInt(UtilidadesFormulario.obtenerTextoComponente(formulario,"id").toString()));
+                producto.setDescripcion(UtilidadesFormulario.obtenerTextoComponente(formulario,"descripción").toString());
+                producto.setPrecio(Double.parseDouble(UtilidadesFormulario.obtenerTextoComponente(formulario,"precio").toString()));
+                producto.setTipoProducto((TipoProducto) UtilidadesFormulario.obtenerTextoComponente(formulario,"tipo producto"));
+                ProductoBD.crearActualizarProducto(producto);
+                cambiarDatosFormulario(formulario,"","","",null);
             }
         });
 
@@ -118,10 +122,10 @@ public class FormularioEmpleado extends JFrame {
         JButton eliminar  = new JButton("Eliminar");
         eliminar.addActionListener(new ActionListener( ) {
             public void actionPerformed(ActionEvent e) {
-                Empleado empleado = new Empleado();
-                empleado.setId(Integer.parseInt(UtilidadesFormulario.obtenerTextoComponente(formulario,"id").toString()));
-                EmpleadoBD.eliminarEmpleado(empleado);
-                cambiarDatosFormulario(formulario,"","","","", null);
+                Producto producto = new Producto();
+                producto.setId(Integer.parseInt(UtilidadesFormulario.obtenerTextoComponente(formulario,"id").toString()));
+                ProductoBD.eliminarProducto(producto);
+                cambiarDatosFormulario(formulario,"","","", null);
             }
         });
 
@@ -131,12 +135,11 @@ public class FormularioEmpleado extends JFrame {
         return listadoBotones;
     }
 
-    private void cambiarDatosFormulario(JPanel formulario, String id, String codigo, String nombre, String apellidos, Object tipoEmpleado) {
+    private void cambiarDatosFormulario(JPanel formulario, String id, String descripcion, String precio, Object tipoProducto) {
         UtilidadesFormulario.ponerValorComponente(formulario, "id", id);
-        UtilidadesFormulario.ponerValorComponente(formulario, "codigo", codigo);
-        UtilidadesFormulario.ponerValorComponente(formulario, "nombre", nombre);
-        UtilidadesFormulario.ponerValorComponente(formulario, "apellidos", apellidos);
-        if(tipoEmpleado!= null) UtilidadesFormulario.ponerValorComponente(formulario, "tipo empleado", tipoEmpleado);
+        UtilidadesFormulario.ponerValorComponente(formulario, "descripción", descripcion);
+        UtilidadesFormulario.ponerValorComponente(formulario, "precio", precio);
+        if(tipoProducto!= null) UtilidadesFormulario.ponerValorComponente(formulario, "tipo producto", tipoProducto);
     }
 
 
