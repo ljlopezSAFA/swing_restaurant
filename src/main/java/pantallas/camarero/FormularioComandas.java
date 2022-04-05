@@ -1,7 +1,11 @@
 package pantallas.camarero;
 
+import modelos.Producto;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
+import java.util.ArrayList;
 
 public class FormularioComandas extends JFrame {
 
@@ -70,8 +74,7 @@ public class FormularioComandas extends JFrame {
 
         panelPrincipal.add(scrollPane);
 
-
-
+        
 
         //ASPECTO
         setContentPane(panelPrincipal);//Panel de Fondo
@@ -107,6 +110,8 @@ public class FormularioComandas extends JFrame {
         comboBox.addItem("Solomillo al Whisky");
 
     }
+
+
 
 
 }

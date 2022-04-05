@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 
 public class UtilidadesBD {
 
-    private static final String url = "jdbc:mariadb://localhost:3306/restaurantDB";
+    private static final String url = "jdbc:mariadb://localhost:3306/restaunrantDB";
     private static final String usuario = "root";
-    private static final String password = "1234";
+    private static final String password = "patata123";
 
 
     static Connection conectarConBD() {
@@ -33,9 +33,5 @@ public class UtilidadesBD {
                     + e.toString());
         }
     }
-
-
-
-
 
 }

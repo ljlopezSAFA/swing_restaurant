@@ -2,6 +2,7 @@ package pantallas;
 
 import pantallas.administrador.PanelGestionAdministrador;
 import pantallas.camarero.PanelGestionCamarero;
+import pantallas.cliente.PanelGestionCliente;
 import pantallas.cocinero.PanelGestionCocinero;
 
 import javax.swing.*;
@@ -119,6 +120,7 @@ public class VentanaPrincipal extends JFrame {
         Image imagenLimitadaTamanyo = imagen.getImage().getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH);
         imagen.setImage(imagenLimitadaTamanyo);
         boton.setIcon(imagen);
+        boton.addActionListener(new AccionAbrirMenuCliente());
         boton.setFocusPainted(false);
         return boton;
     }
@@ -152,6 +154,12 @@ public class VentanaPrincipal extends JFrame {
     class AccionAbrirMenuAdministrador implements ActionListener {
         public void actionPerformed(ActionEvent ae) {
             new PanelGestionAdministrador();
+        }
+    }
+
+    class AccionAbrirMenuCliente implements ActionListener {
+        public void actionPerformed(ActionEvent ae) {
+            new PanelGestionCliente();
         }
     }
 
