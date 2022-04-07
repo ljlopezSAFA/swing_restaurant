@@ -16,6 +16,12 @@ public class Producto {
         this.tipoProducto = tipoProducto;
     }
 
+    public Producto( String descripcion, Double precio, TipoProducto tipoProducto) {
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.tipoProducto = tipoProducto;
+    }
+
     public Producto() {
     }
 

@@ -3,6 +3,8 @@ package pantallas.cliente;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 
 public class PanelGestionCliente extends JFrame {
@@ -71,10 +73,15 @@ public class PanelGestionCliente extends JFrame {
         icono.setImage(imagenLimitadaTamanyo);
         boton.setIcon(icono);
         boton.setFocusPainted(false);
-        //boton.addActionListener();
+        boton.addActionListener(new AccionAbrirCarta());
         return boton;
     }
 
+    class AccionAbrirCarta implements ActionListener {
+        public void actionPerformed(ActionEvent ae) {
+            new CartaRestaurante();
+        }
+    }
 
 
 }

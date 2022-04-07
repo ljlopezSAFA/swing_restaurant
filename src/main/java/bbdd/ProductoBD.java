@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductoBD extends UtilidadesBD {
 
@@ -38,6 +40,32 @@ public class ProductoBD extends UtilidadesBD {
         return producto;
     }
 
+    public static List<Producto> obtenerProductos() {
+
+        Connection con = conectarConBD();
+        List<Producto> productos = new ArrayList<>();
+
+        try {
+            PreparedStatement query = con.prepareStatement("SELECT descripcion, tipo_producto, precio FROM producto ");
+            ResultSet rs = query.executeQuery();
+
+            //Recorremos los datos
+            while (rs.next()) {
+                Producto producto = new Producto( rs.getString("descripcion"),
+                        rs.getDouble("precio"), TipoProducto.values()[rs.getInt("tipo_producto")]);
+                productos.add(producto);
+            }
+
+        } catch (SQLException sqle) {
+            System.out.println("Error en la ejecución:"
+                    + sqle.getErrorCode() + " " + sqle.getMessage());
+
+        } finally {
+            cerrarConexion(con);
+        }
+
+        return productos;
+    }
 
 
     public static void crearActualizarProducto(Producto producto){
