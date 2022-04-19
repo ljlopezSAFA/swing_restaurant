@@ -88,10 +88,4 @@ public class CartaRestaurante extends JFrame {
         String ruta = new File("").getAbsolutePath();
         return ruta + "\\imagenes\\carta.jpg";
     }
-
-
-
-
-
-
 }
