@@ -1,12 +1,16 @@
 package bbdd;
 
 import modelos.Empleado;
+import modelos.Producto;
 import modelos.TipoEmpleado;
+import modelos.TipoProducto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EmpleadoBD extends UtilidadesBD {
 
@@ -50,6 +54,36 @@ public class EmpleadoBD extends UtilidadesBD {
         }
     }
 
+    public static List<Empleado> obtenerEmpleados() {
+
+        Connection con = conectarConBD();
+        List<Empleado> empleados = new ArrayList<>();
+
+        try {
+            PreparedStatement query = con.prepareStatement("SELECT * FROM empleado ");
+            ResultSet rs = query.executeQuery();
+
+            //Recorremos los datos
+            while (rs.next()) {
+                Empleado empleado = new Empleado(
+                        rs.getInt("id"),
+                        rs.getString("codigo_empleado"),
+                        rs.getString("nombre"),
+                        rs.getString("apellidos"),
+                        TipoEmpleado.values()[rs.getInt("tipo_empleado")]);
+                empleados.add(empleado);
+            }
+
+        } catch (SQLException sqle) {
+            System.out.println("Error en la ejecución:"
+                    + sqle.getErrorCode() + " " + sqle.getMessage());
+
+        } finally {
+            cerrarConexion(con);
+        }
+
+        return empleados;
+    }
 
     public static void crearEmpleado(Empleado empleado){
         Connection con = conectarConBD();

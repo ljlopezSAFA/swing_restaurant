@@ -46,13 +46,17 @@ public class ProductoBD extends UtilidadesBD {
         List<Producto> productos = new ArrayList<>();
 
         try {
-            PreparedStatement query = con.prepareStatement("SELECT descripcion, tipo_producto, precio FROM producto ");
+            PreparedStatement query = con.prepareStatement("SELECT id,descripcion, tipo_producto, precio FROM producto ");
             ResultSet rs = query.executeQuery();
 
             //Recorremos los datos
             while (rs.next()) {
-                Producto producto = new Producto( rs.getString("descripcion"),
-                        rs.getDouble("precio"), TipoProducto.values()[rs.getInt("tipo_producto")]);
+                Producto producto = new Producto(
+                        rs.getInt("id"),
+                        rs.getString("descripcion"),
+                        rs.getDouble("precio"),
+                        TipoProducto.values()[rs.getInt("tipo_producto")]);
+
                 productos.add(producto);
             }
 

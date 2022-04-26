@@ -59,6 +59,7 @@ public class UtilidadesFormulario {
         items.forEach(comboBox::addItem);
         etiqueta.setLabelFor(comboBox);
         comboBox.setName(nombre);
+        comboBox.setSize(200, comboBox.getPreferredSize().height);
         panel.add(comboBox);
         return  comboBox;
     }

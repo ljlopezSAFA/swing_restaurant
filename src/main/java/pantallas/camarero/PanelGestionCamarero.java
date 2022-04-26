@@ -3,6 +3,8 @@ package pantallas.camarero;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 
 public class PanelGestionCamarero extends JFrame {
@@ -10,6 +12,7 @@ public class PanelGestionCamarero extends JFrame {
     private static final ImageIcon fondoPantalla = new ImageIcon(getRutaImagenFondo()) ;
     private JButton botonrComanda;
     private JButton botonCuenta;
+    private JButton botonAforo;
 
 
 
@@ -26,8 +29,10 @@ public class PanelGestionCamarero extends JFrame {
         panelBotonesCamarero.setOpaque(false);
         botonrComanda = crearBotonComanda();
         botonCuenta = crearBotonCuenta();
+        botonAforo = crearBotonAforo();
         panelBotonesCamarero.add(botonrComanda,BorderLayout.EAST);
         panelBotonesCamarero.add(botonCuenta,BorderLayout.WEST);
+        panelBotonesCamarero.add(botonAforo,BorderLayout.WEST);
         panelPrincipal.add(panelBotonesCamarero,BorderLayout.WEST);
 
 
@@ -73,7 +78,12 @@ public class PanelGestionCamarero extends JFrame {
         icono.setImage(imagenLimitadaTamanyo);
         boton.setIcon(icono);
         boton.setFocusPainted(false);
-        //boton.addActionListener();
+        boton.addActionListener(new ActionListener() {
+                   @Override
+                    public void actionPerformed(ActionEvent e) {
+                        new PanelComanda();
+                    }
+                });
         return boton;
     }
 
@@ -86,6 +96,23 @@ public class PanelGestionCamarero extends JFrame {
         boton.setIcon(icono);
         boton.setFocusPainted(false);
         //boton.addActionListener();
+        return boton;
+    }
+
+    private  JButton crearBotonAforo(){
+        JButton boton = new JButton("Aforo");
+        String ruta = new File("").getAbsolutePath() + "\\imagenes\\aforo.png" ;
+        ImageIcon icono = new ImageIcon(ruta);
+        Image imagenLimitadaTamanyo = icono.getImage().getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH);
+        icono.setImage(imagenLimitadaTamanyo);
+        boton.setIcon(icono);
+        boton.setFocusPainted(false);
+        boton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new PanelAforo();
+            }
+        });
         return boton;
     }
 
