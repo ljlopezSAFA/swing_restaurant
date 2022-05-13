@@ -95,7 +95,12 @@ public class PanelGestionCamarero extends JFrame {
         icono.setImage(imagenLimitadaTamanyo);
         boton.setIcon(icono);
         boton.setFocusPainted(false);
-        //boton.addActionListener();
+        boton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new PanelCuentas();
+            }
+        });
         return boton;
     }
 

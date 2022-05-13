@@ -113,5 +113,31 @@ public class ComandaBD extends UtilidadesBD {
 
     }
 
+    public static void ponerComandaHistorico(int id_comanda){
+
+        Connection conexion = conectarConBD();
+
+        try {
+            PreparedStatement update = conexion.prepareStatement("update comanda set historico = 1 where id = ? ");
+            update.setInt(1, id_comanda);
+            update.executeUpdate();
+
+        }catch (SQLException e){
+            System.out.println("Error en la ejecución:"
+                    + e.getErrorCode() + " " + e.getMessage());
+
+
+
+        }finally {
+            cerrarConexion(conexion);
+        }
+
+    }
+
+
+
+
+
+
 
 }
